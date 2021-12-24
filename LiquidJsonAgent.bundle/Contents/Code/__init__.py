@@ -22,7 +22,6 @@ class LiquidJsonAgent(Agent.Movies):
         movieTitle = getattr(media, "name", getattr(media, "title", "Unknown"))
         
         if os.path.exists(path):
-            wl("Found JSON File.")
             mid = b64encode(movieTitle).replace("/", "_")
             results.Append(MetadataSearchResult(id=mid, name=movieTitle, year=2021, lang=lang, score=100))
         else:
@@ -35,13 +34,10 @@ class LiquidJsonAgent(Agent.Movies):
         
         if os.path.exists(path):
             info = json.loads(Core.storage.load(path))
-            wl(info)
 
             try:
                 metadata.title = info['title']
-                wl("Set Tile")
             except:
-                wl("Couldnt Set Title")
                 pass
 
             try:
